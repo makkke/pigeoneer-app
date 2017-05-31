@@ -2,9 +2,9 @@
  * Base webpack config used across other specific configs
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import { dependencies as externals } from './app/package.json';
+import path from 'path'
+import webpack from 'webpack'
+import { dependencies as externals } from './app/package.json'
 
 export default {
   externals: Object.keys(externals || {}),
@@ -16,17 +16,17 @@ export default {
       use: {
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true
-        }
-      }
-    }]
+          cacheDirectory: true,
+        },
+      },
+    }],
   },
 
   output: {
     path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
     // https://github.com/webpack/webpack/issues/1114
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
 
   /**
@@ -43,4 +43,4 @@ export default {
   plugins: [
     new webpack.NamedModulesPlugin(),
   ],
-};
+}
