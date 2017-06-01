@@ -63,8 +63,8 @@ class Dashboard extends Component {
           type="password"
           onChange={this.handleInputChange}
         />
-        <RaisedButton fullWidth onClick={this.login}>Log In</RaisedButton>
-        <RaisedButton fullWidth onClick={() => loginWithGoogle}>Login with Google</RaisedButton>
+        <RaisedButton onClick={this.login}>Log In</RaisedButton>
+        <RaisedButton onClick={() => loginWithGoogle}>Login with Google</RaisedButton>
       </div>
     )
   }
