@@ -177,6 +177,14 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        ROAD_SO_FAR_API: process.env.ROAD_SO_FAR_API || '"http://localhost:1212"',
+        AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || '"vwqeSmdGge6jdXzDwTnTQE3K7KOS3n0H"',
+        AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || '"makkke.auth0.com"',
+        AUTH0_REDIRECT_URI: process.env.AUTH0_REDIRECT_URI || '"http://localhost:8080/login"',
+      },
+    }),
     new webpack.DllReferencePlugin({
       context: process.cwd(),
       manifest: require(manifest),
