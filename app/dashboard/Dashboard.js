@@ -5,7 +5,7 @@ import { TextField, RaisedButton } from 'material-ui'
 
 import NavBar from '../components/NavBar'
 // import SideBar from '../components/SideBar'
-import { login, loginWithGoogle } from '../utils/auth'
+import { login, signup, loginWithGoogle } from '../utils/auth'
 
 const styles = {
   backgroundColor: 'white',
@@ -47,6 +47,15 @@ class Dashboard extends Component {
     }
   }
 
+  signup = () => {
+    try {
+      const { email, password } = this.state
+      this.setState({ loading: true })
+      signup(email, password)
+    } catch (err) {
+      this.setState({ errors: { login: true }, loading: false })
+    }
+  }
 
   render() {
     return (
@@ -64,6 +73,7 @@ class Dashboard extends Component {
           onChange={this.handleInputChange}
         />
         <RaisedButton onClick={this.login}>Log In</RaisedButton>
+        <RaisedButton onClick={this.signup}>Sign Up</RaisedButton>
         <RaisedButton onClick={() => loginWithGoogle}>Login with Google</RaisedButton>
       </div>
     )
