@@ -64,6 +64,7 @@ app.on('ready', async () => {
     width: 1024,
     height: 728,
   })
+  mainWindow.maximize()
 
   mainWindow.loadURL(`file://${__dirname}/app.html`)
 

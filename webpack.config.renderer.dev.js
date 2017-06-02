@@ -179,7 +179,7 @@ export default merge.smart(baseConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        ROAD_SO_FAR_API: process.env.ROAD_SO_FAR_API || '"http://localhost:1212"',
+        // ROAD_SO_FAR_API: process.env.ROAD_SO_FAR_API || '"http://localhost:1212"',
         AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || '"1yxkaMXHJO5GmXInPeCsAT_szwxoYUwj"',
         AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || '"pinaple-test.auth0.com"',
         // AUTH0_REDIRECT_URI: process.env.AUTH0_REDIRECT_URI || '"http://localhost:1212"',

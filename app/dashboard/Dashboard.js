@@ -16,8 +16,8 @@ const styles = {
 class Dashboard extends Component {
 
   state = {
-    email: '',
-    password: '',
+    email: 'slava@makkke.com',
+    password: 'test123',
     loading: false,
     errors: {},
   }
@@ -64,12 +64,14 @@ class Dashboard extends Component {
         <TextField
           name="email"
           floatingLabelText="Email"
+          value={this.state.email}
           onChange={this.handleInputChange}
         />
         <TextField
           name="password"
           floatingLabelText="Password"
           type="password"
+          value={this.state.password}
           onChange={this.handleInputChange}
         />
         <RaisedButton onClick={this.login}>Log In</RaisedButton>

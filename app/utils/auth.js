@@ -43,8 +43,9 @@ const createAuth0 = () => (
   new Auth0.WebAuth({
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
-    responseType: 'token',
+    responseType: 'code',
     // redirectUri: process.env.AUTH0_REDIRECT_URI,
+    // redirectUri: location.href,
     // auth: {
     //       redirect: false,
     //       sso: false
@@ -92,16 +93,18 @@ export const login = (username, password) => {
       console.error(new Error(err.description)) // eslint-disable-line
       return
     }
+
     if (result && result.idToken && result.accessToken) {
       setToken(result.accessToken, result.idToken)
-      browserHistory.replace('/dashboard')
+      console.log('logged in')
+      // browserHistory.replace('/dashboard')
     }
   })
 }
 
 export const signup = (email, password) => {
   const auth0 = createAuth0()
-  auth0.redirect.signupAndLogin({
+  auth0.signup({
     connection: 'Username-Password-Authentication',
     email,
     password,
@@ -109,6 +112,7 @@ export const signup = (email, password) => {
     if (err) {
       console.error(new Error(err.description)) // eslint-disable-line
     }
+    console.log('signed up')
   })
 }
 
