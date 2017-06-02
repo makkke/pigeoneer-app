@@ -41,10 +41,14 @@ export const isLoggedIn = () => {
 
 const createAuth0 = () => (
   new Auth0.WebAuth({
-    clientID: process.env.AUTH0_CLIENT_ID,
     domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
     responseType: 'token',
-    redirectUri: process.env.AUTH0_REDIRECT_URI,
+    // redirectUri: process.env.AUTH0_REDIRECT_URI,
+    // auth: {
+    //       redirect: false,
+    //       sso: false
+    //     }
   })
 )
 
