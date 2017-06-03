@@ -7,28 +7,28 @@
  * https://webpack.js.org/concepts/hot-module-replacement/
  */
 
-import path from 'path';
-import fs from 'fs';
-import webpack from 'webpack';
-import chalk from 'chalk';
-import merge from 'webpack-merge';
-import { spawn, execSync } from 'child_process';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import baseConfig from './webpack.config.base';
+import path from 'path'
+import fs from 'fs'
+import webpack from 'webpack'
+import chalk from 'chalk'
+import merge from 'webpack-merge'
+import { spawn, execSync } from 'child_process'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import baseConfig from './webpack.config.base'
 
-const port = process.env.PORT || 1212;
-const publicPath = `http://localhost:${port}/dist`;
-const dll = path.resolve(process.cwd(), 'dll');
-const manifest = path.resolve(dll, 'vendor.json');
+const port = process.env.PORT || 1212
+const publicPath = `http://localhost:${port}/dist`
+const dll = path.resolve(process.cwd(), 'dll')
+const manifest = path.resolve(dll, 'vendor.json')
 
 /**
  * Warn if the DLL is not built
  */
 if (!(fs.existsSync(dll) && fs.existsSync(manifest))) {
   console.log(chalk.black.bgYellow.bold(
-    'The DLL files are missing. Sit back while we build them for you with "npm run build-dll"'
-  ));
-  execSync('npm run build-dll');
+    'The DLL files are missing. Sit back while we build them for you with "npm run build-dll"',
+  ))
+  execSync('npm run build-dll')
 }
 
 export default merge.smart(baseConfig, {
@@ -44,7 +44,7 @@ export default merge.smart(baseConfig, {
   ],
 
   output: {
-    publicPath: `http://localhost:${port}/dist/`
+    publicPath: `http://localhost:${port}/dist/`,
   },
 
   module: {
@@ -53,21 +53,21 @@ export default merge.smart(baseConfig, {
         test: /\.global\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /^((?!\.global).)*\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -76,46 +76,7 @@ export default merge.smart(baseConfig, {
               sourceMap: true,
               importLoaders: 1,
               localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          },
-        ]
-      },
-      // Add SASS support  - compile all .global.scss files and pipe it to style.css
-      {
-        test: /\.global\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
             },
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      // Add SASS support  - compile all other .scss files and pipe it to style.css
-      {
-        test: /^((?!\.global).)*\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'sass-loader'
           },
         ],
       },
