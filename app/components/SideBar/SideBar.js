@@ -1,5 +1,4 @@
 import React from 'react'
-import Radium from 'radium'
 
 const styles = {
   root: {
@@ -24,4 +23,4 @@ const NavBar = () => (
   </div>
 )
 
-export default Radium(NavBar)
+export default NavBar

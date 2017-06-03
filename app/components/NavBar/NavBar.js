@@ -1,5 +1,4 @@
 import React from 'react'
-import Radium from 'radium'
 
 const styles = {
   root: {
@@ -18,11 +17,6 @@ const styles = {
   logo: {
     margin: 'auto 0',
   },
-  minimized: {
-    '@media (max-width: 600px)': {
-      display: 'none',
-    },
-  },
 }
 
 const NavBar = () => (
@@ -38,4 +32,4 @@ const NavBar = () => (
   </div>
 )
 
-export default Radium(NavBar)
+export default NavBar

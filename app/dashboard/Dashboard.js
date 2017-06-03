@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import Radium from 'radium'
 import { TextField, RaisedButton } from 'material-ui'
 
 import NavBar from '../components/NavBar'
@@ -82,4 +81,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Radium(Dashboard)
+export default Dashboard
