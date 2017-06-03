@@ -109,7 +109,7 @@ export default merge.smart(baseConfig, {
           loader: 'url-loader',
           options: {
             limit: 10000,
-            mimetype: 'application/octet-stream'
+            mimetype: 'application/octet-stream',
           },
         },
       },
@@ -173,15 +173,15 @@ export default merge.smart(baseConfig, {
      * 'staging', for example, by changing the ENV variables in the npm scripts
      */
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
 
     new webpack.LoaderOptionsPlugin({
-      debug: true
+      debug: true,
     }),
 
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: '[name].css',
     }),
   ],
 
@@ -198,7 +198,7 @@ export default merge.smart(baseConfig, {
     contentBase: path.join(__dirname, 'dist'),
     watchOptions: {
       aggregateTimeout: 300,
-      poll: 100
+      poll: 100,
     },
     historyApiFallback: {
       verbose: true,
@@ -209,11 +209,11 @@ export default merge.smart(baseConfig, {
         spawn(
           'npm',
           ['run', 'start-hot-renderer'],
-          { shell: true, env: process.env, stdio: 'inherit' }
+          { shell: true, env: process.env, stdio: 'inherit' },
         )
         .on('close', code => process.exit(code))
-        .on('error', spawnError => console.error(spawnError));
+        .on('error', spawnError => console.error(spawnError))
       }
-    }
+    },
   },
-});
+})

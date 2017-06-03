@@ -20,7 +20,7 @@ const configureStore = (initialState?: counterStateType) => {
   // Logging Middleware
   const logger = createLogger({
     level: 'info',
-    collapsed: true
+    collapsed: true,
   })
   middleware.push(logger)
 
@@ -52,7 +52,7 @@ const configureStore = (initialState?: counterStateType) => {
 
   if (module.hot) {
     module.hot.accept('../__reducers', () =>
-      store.replaceReducer(require('../__reducers')) // eslint-disable-line global-require
+      store.replaceReducer(require('../__reducers')), // eslint-disable-line global-require
     )
   }
 

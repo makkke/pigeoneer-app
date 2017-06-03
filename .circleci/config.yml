@@ -20,22 +20,22 @@ jobs:
           name: Flow Test
           command: yarn run test:flow
 
-      - run:
-          name: Unit Test
-          command: yarn run test:unit
+      # - run:
+      #     name: Unit Test
+      #     command: yarn run test:unit
 
       # - run:
       #     name: E2E Test
       #     command: yarn run test:e2e
 
-      - run:
-          name: Package Test
-          command: yarn run package
+      # - run:
+      #     name: Package Test
+      #     command: yarn run package
 
-      - run:
-          name: Deploy to production
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws s3 cp ./public/app.css s3://pinaple-app/app.css
-              aws s3 cp ./public/dist/main.*.js s3://pinaple-app/app.js
-            fi
+      # - run:
+      #     name: Deploy to production
+      #     command: |
+      #       if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #         aws s3 cp ./public/app.css s3://pinaple-app/app.css
+      #         aws s3 cp ./public/dist/main.*.js s3://pinaple-app/app.js
+      #       fi

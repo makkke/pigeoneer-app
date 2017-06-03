@@ -1,4 +1,3 @@
-import { browserHistory } from 'react-router'
 import Auth0 from 'auth0-js'
 import decode from 'jwt-decode'
 
