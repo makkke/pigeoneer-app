@@ -2,13 +2,13 @@
  * Build config for electron renderer process
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import merge from 'webpack-merge';
-import BabiliPlugin from 'babili-webpack-plugin';
-import baseConfig from './webpack.config.base';
+import path from 'path'
+import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import merge from 'webpack-merge'
+import BabiliPlugin from 'babili-webpack-plugin'
+import baseConfig from './webpack.config.base'
 
 export default merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -19,7 +19,7 @@ export default merge.smart(baseConfig, {
 
   output: {
     path: path.join(__dirname, 'app/dist'),
-    publicPath: '../dist/'
+    publicPath: '../dist/',
   },
 
   module: {
@@ -30,7 +30,7 @@ export default merge.smart(baseConfig, {
         use: ExtractTextPlugin.extract({
           use: 'css-loader',
           fallback: 'style-loader',
-        })
+        }),
       },
       // Pipe other styles through css modules and append to style.css
       {
@@ -42,8 +42,8 @@ export default merge.smart(baseConfig, {
               modules: true,
               importLoaders: 1,
               localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          }
+            },
+          },
         }),
       },
       // Add SASS support  - compile all .global.scss files and pipe it to style.css
@@ -52,14 +52,14 @@ export default merge.smart(baseConfig, {
         use: ExtractTextPlugin.extract({
           use: [
             {
-              loader: 'css-loader'
+              loader: 'css-loader',
             },
             {
-              loader: 'sass-loader'
-            }
+              loader: 'sass-loader',
+            },
           ],
           fallback: 'style-loader',
-        })
+        }),
       },
       // Add SASS support  - compile all other .scss files and pipe it to style.css
       {
@@ -161,4 +161,4 @@ export default merge.smart(baseConfig, {
       openAnalyzer: process.env.OPEN_ANALYZER === 'true'
     }),
   ],
-});
+})
