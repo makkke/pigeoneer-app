@@ -44,12 +44,6 @@ const createAuth0 = () => (
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     responseType: 'token',
-    // redirectUri: process.env.AUTH0_REDIRECT_URI,
-    // redirectUri: location.href,
-    // auth: {
-    //       redirect: false,
-    //       sso: false
-    //     }
   })
 )
 

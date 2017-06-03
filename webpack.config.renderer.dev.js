@@ -116,8 +116,8 @@ export default merge.smart(baseConfig, {
           },
           {
             loader: 'sass-loader'
-          }
-        ]
+          },
+        ],
       },
       // WOFF Font
       {
@@ -127,7 +127,7 @@ export default merge.smart(baseConfig, {
           options: {
             limit: 10000,
             mimetype: 'application/font-woff',
-          }
+          },
         },
       },
       // WOFF2 Font
@@ -138,8 +138,8 @@ export default merge.smart(baseConfig, {
           options: {
             limit: 10000,
             mimetype: 'application/font-woff',
-          }
-        }
+          },
+        },
       },
       // TTF Font
       {
@@ -149,8 +149,8 @@ export default merge.smart(baseConfig, {
           options: {
             limit: 10000,
             mimetype: 'application/octet-stream'
-          }
-        }
+          },
+        },
       },
       // EOT Font
       {
@@ -165,24 +165,22 @@ export default merge.smart(baseConfig, {
           options: {
             limit: 10000,
             mimetype: 'image/svg+xml',
-          }
-        }
+          },
+        },
       },
       // Common Image Formats
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
         use: 'url-loader',
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        // ROAD_SO_FAR_API: process.env.ROAD_SO_FAR_API || '"http://localhost:1212"',
         AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || '"1yxkaMXHJO5GmXInPeCsAT_szwxoYUwj"',
         AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || '"pinaple-test.auth0.com"',
-        // AUTH0_REDIRECT_URI: process.env.AUTH0_REDIRECT_URI || '"http://localhost:1212"',
       },
     }),
     new webpack.DllReferencePlugin({
