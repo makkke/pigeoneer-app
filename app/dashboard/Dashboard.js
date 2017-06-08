@@ -15,7 +15,7 @@ const styles = {
 class Dashboard extends Component {
 
   state = {
-    email: 'slava@makkke.com',
+    email: 'benny@abcd.com',
     password: 'test123',
     loading: false,
     errors: {},
@@ -75,7 +75,7 @@ class Dashboard extends Component {
         />
         <RaisedButton onClick={this.login}>Log In</RaisedButton>
         <RaisedButton onClick={this.signup}>Sign Up</RaisedButton>
-        <RaisedButton onClick={() => loginWithGoogle}>Login with Google</RaisedButton>
+        <RaisedButton onClick={() => loginWithGoogle()}>Login with Google</RaisedButton>
       </div>
     )
   }
