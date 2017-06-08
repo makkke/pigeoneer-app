@@ -42,6 +42,7 @@ const createAuth0 = () => (
   new Auth0.WebAuth({
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
+    // redirectUri: 'https://pinaple-test.auth0.com/mobile',
     responseType: 'token',
   })
 )
