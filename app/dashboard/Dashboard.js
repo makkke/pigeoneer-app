@@ -4,7 +4,7 @@ import { TextField, RaisedButton } from 'material-ui'
 
 import NavBar from '../components/NavBar'
 // import SideBar from '../components/SideBar'
-import { login, signup, loginWithGoogle } from '../utils/auth'
+import { login, signup, loginWithGoogle, loginWithGithub } from '../utils/auth'
 
 const styles = {
   backgroundColor: 'white',
@@ -76,6 +76,7 @@ class Dashboard extends Component {
         <RaisedButton onClick={this.login}>Log In</RaisedButton>
         <RaisedButton onClick={this.signup}>Sign Up</RaisedButton>
         <RaisedButton onClick={() => loginWithGoogle()}>Login with Google</RaisedButton>
+        <RaisedButton onClick={() => loginWithGithub()}>Login with Github</RaisedButton>
       </div>
     )
   }
