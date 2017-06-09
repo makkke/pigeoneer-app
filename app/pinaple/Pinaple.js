@@ -12,7 +12,7 @@ const styles = {
   minHeight: '100vh',
 }
 
-class Dashboard extends Component {
+class Pinaple extends Component {
 
   state = {
     email: 'benny@abcd.com',
@@ -81,4 +81,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+export default Pinaple
