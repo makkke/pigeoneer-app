@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react'
-import { TextField, RaisedButton } from 'material-ui'
-
-import NavBar from '../components/NavBar'
-// import SideBar from '../components/SideBar'
-import { login, signup, loginWithGoogle } from '../utils/auth'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import NavBar from './components/NavBar'
+import * as actions from '../auth/auth.module'
 
 const styles = {
   backgroundColor: 'white',
@@ -13,72 +13,28 @@ const styles = {
 }
 
 class Pinaple extends Component {
-
-  state = {
-    email: 'benny@abcd.com',
-    password: 'test123',
-    loading: false,
-    errors: {},
-  }
-
-  handleInputChange = (event) => {
-    const { errors } = this.state
-    const value = event.target.value.trim()
-    const field = event.target.name
-
-    errors[field] = null
-    errors.login = null
-
-    this.setState({ [field]: value, errors })
-  }
-
-  login = () => {
-    // TODO: add validation
-
-    // login
-    try {
-      const { email, password } = this.state
-      this.setState({ loading: true })
-      login(email, password)
-      // await this.props.actions.login(this.state.email, this.state.password)
-    } catch (err) {
-      this.setState({ errors: { login: true }, loading: false })
-    }
-  }
-
-  signup = () => {
-    try {
-      const { email, password } = this.state
-      this.setState({ loading: true })
-      signup(email, password)
-    } catch (err) {
-      this.setState({ errors: { login: true }, loading: false })
-    }
-  }
-
   render() {
     return (
       <div style={styles}>
-        <NavBar />
-        <TextField
-          name="email"
-          floatingLabelText="Email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
+        <NavBar
+          name={this.props.name}
+          logout={this.props.actions.logout}
         />
-        <TextField
-          name="password"
-          floatingLabelText="Password"
-          type="password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-        />
-        <RaisedButton onClick={this.login}>Log In</RaisedButton>
-        <RaisedButton onClick={this.signup}>Sign Up</RaisedButton>
-        <RaisedButton onClick={() => loginWithGoogle()}>Login with Google</RaisedButton>
+        <div>THIS IS PINAPLE MAIN PAGE</div>
       </div>
     )
   }
 }
 
-export default Pinaple
+Pinaple.propTypes = {
+  name: PropTypes.string.isRequired,
+  actions: PropTypes.objectOf(PropTypes.func).isRequired,
+}
+
+const mapStateToProps = state => ({ name: state.auth.name })
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...actions }, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pinaple)

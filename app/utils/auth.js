@@ -42,7 +42,8 @@ const createAuth0 = () => (
   new Auth0.WebAuth({
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
-    redirectUri: 'file:///Users/p206858/makkke/pinaple-app/app/app.html#/',
+    // redirectUri: 'https://pinaple-test.auth0.com/mobile',
+    // redirectUri: location.href,
     responseType: 'token',
   })
 )
@@ -113,6 +114,27 @@ export const signup = (email, password) => {
 export const loginWithGoogle = () => {
   const auth0 = createAuth0()
   auth0.authorize({ connection: 'google-oauth2' })
+
+  setTimeout(() => {
+    auth0.parseHash((err, data) => {
+      console.log(err, data)
+      console.log(window.href)
+      console.log(window.location)
+    })
+  }, 2000)
+}
+
+export const loginWithGithub = () => {
+  const auth0 = createAuth0()
+  auth0.authorize({ connection: 'github' })
+
+  setTimeout(() => {
+    auth0.parseHash((err, data) => {
+      console.log(err, data)
+      console.log(window.href)
+      console.log(window.location)
+    })
+  }, 2000)
 }
 
 export default {}
