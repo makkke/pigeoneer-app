@@ -29,6 +29,12 @@ export const isTokenExpired = (token) => {
 export const getToken = () => localStorage.getItem('id_token')
 
 /**
+ * Retrieves the user access token from localStorage
+ * @return {[type]} [description]
+ */
+export const getAccessToken = () => localStorage.getItem('access_token')
+
+/**
  * Checks if there is a saved token and it's still valid
  * @return {[type]} [description]
  */
@@ -73,29 +79,41 @@ export const parseHash = (hash) => {
  * @return {[type]} [description]
  */
 export const logout = () => {
+  localStorage.removeItem('access_token')
   localStorage.removeItem('id_token')
-  localStorage.removeItem('profile')
 }
 
-export const login = (username, password) => {
-  const auth0 = createAuth0()
-  auth0.client.login({
-    realm: 'Username-Password-Authentication',
-    username,
-    password,
-  }, (err, result) => {
-    if (err) {
-      console.error(new Error(err.description)) // eslint-disable-line
-      return
-    }
+export const login = (username, password) => (
+  new Promise((resolve, reject) => {
+    const auth0 = createAuth0()
+    auth0.client.login({
+      realm: 'Username-Password-Authentication',
+      username,
+      password,
+    }, (err, result) => {
+      if (err) {
+        reject(err.description)
+      }
 
-    if (result && result.idToken && result.accessToken) {
       setToken(result.accessToken, result.idToken)
-      console.log('logged in')
-      // browserHistory.replace('/dashboard')
-    }
+      resolve()
+    })
   })
-}
+)
+
+export const me = () => (
+  new Promise((resolve, reject) => {
+    const auth0 = createAuth0()
+    const token = getAccessToken()
+    auth0.client.userInfo(token, (err, user) => {
+      if (err) {
+        reject(err.description)
+        return
+      }
+      resolve(user)
+    })
+  })
+)
 
 export const signup = (email, password) => {
   const auth0 = createAuth0()

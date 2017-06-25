@@ -5,12 +5,20 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import App from './App'
 import { configureStore, history } from './store/configureStore'
+import { loginSuccess, loadMe } from './auth/auth.module'
 
 import './app.global.css'
 
 injectTapEventPlugin()
 
 const store = configureStore()
+
+// Login if token exists in local storage
+// TODO: refactor, move checks to reducer and utils
+const token = localStorage.getItem('id_token')
+if (token) {
+  store.dispatch(loadMe())
+}
 
 render(
   <AppContainer>

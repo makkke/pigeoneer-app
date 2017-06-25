@@ -17,7 +17,7 @@ class Pinaple extends Component {
     return (
       <div style={styles}>
         <NavBar
-          name={this.props.name}
+          name={this.props.user.name}
           logout={this.props.actions.logout}
         />
         <div>THIS IS PINAPLE MAIN PAGE</div>
@@ -27,11 +27,11 @@ class Pinaple extends Component {
 }
 
 Pinaple.propTypes = {
-  name: PropTypes.string.isRequired,
+  user: PropTypes.object,
   actions: PropTypes.objectOf(PropTypes.func).isRequired,
 }
 
-const mapStateToProps = state => ({ name: state.auth.name })
+const mapStateToProps = state => ({ user: state.auth.user })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ ...actions }, dispatch),

@@ -3,33 +3,61 @@ import * as auth from '../utils/auth'
 // ------------------------------------
 // Constants
 // ------------------------------------
-const USER_LOGIN = 'USER_LOGIN'
-const USER_LOGOUT = 'USER_LOGOUT'
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+// const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+
+const LOAD_ME_SUCCESS = 'LOAD_ME_SUCCESS'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
-
-const userLogin = (name) => ({
-  type: USER_LOGIN,
-  name,
-})
-
-const userLogout = () => ({
-  type: USER_LOGOUT,
+export const loginSuccess = (user) => ({
+  type: LOGIN_SUCCESS,
+  user,
 })
 
 export const login = (email, password) => (async (dispatch) => {
-  auth.login(email, password)
-  return dispatch(userLogin(email))
+  // TODO: add proper error handling
+  try {
+    await auth.login(email, password)
+    const user = await auth.me()
+
+    return dispatch(loginSuccess(user))
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 export const signup = (email, password) => (async () => (
   auth.signup(email, password)
 ))
 
+export const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+})
+
 export const logout = () => (async (dispatch) => {
   auth.logout()
-  return dispatch(userLogout())
+
+  return dispatch(logoutSuccess())
+})
+
+export const loadMeSuccess = (user) => ({
+  type: LOAD_ME_SUCCESS,
+  user,
+})
+
+export const loadMe = () => (async (dispatch) => {
+  // TODO: add proper error handling
+  try {
+    const user = await auth.me()
+
+    return dispatch(loginSuccess(user))
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 export const actions = {
@@ -40,11 +68,13 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [USER_LOGIN]: (state, { name }) => ({
-    name,
+  [LOGIN_SUCCESS]: (state, { user }) => ({
+    ...state,
+    user,
   }),
-  [USER_LOGOUT]: () => ({
-    name: '',
+  [LOGOUT_SUCCESS]: (state) => ({
+    ...state,
+    user: {},
   }),
 }
 
@@ -52,7 +82,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  name: '',
+  user: {},
 }
 
 export default function reducer(state = initialState, action) {

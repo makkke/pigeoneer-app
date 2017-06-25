@@ -20,9 +20,8 @@ const styles = {
 }
 
 class Login extends Component {
-
   state = {
-    email: 'benny@abcd.com',
+    email: 'slava@makkke.com',
     password: 'test123',
     loading: false,
     errors: {},
@@ -44,7 +43,7 @@ class Login extends Component {
     try {
       const { email, password } = this.state
       this.setState({ loading: true })
-      this.props.actions.login(email, password)
+      await this.props.actions.login(email, password)
       history.push('/')
     } catch (err) {
       this.setState({ errors: { login: true }, loading: false })
