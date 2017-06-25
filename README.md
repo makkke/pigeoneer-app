@@ -1,2 +1,2 @@
-# pigeoneer-app
-Electron App for Pigeoneer
+# pinaple-app
+Electron App for Pinaple
